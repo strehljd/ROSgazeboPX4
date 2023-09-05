@@ -10,9 +10,10 @@ sudo docker build . -t rosgazebopx4
 
 In your ubuntu systems allow xhost sharing:
 
-````
+```
 xhost +local:root
 ```
+
 Then, start docker container using: (see http://wiki.ros.org/docker/Tutorials/GUI)
 ```
 sudo docker run \
@@ -39,6 +40,6 @@ roslaunch px4 multi_uav_mavros_sitl.launch
 ```
 
 When done remove xhost priviliges: 
-````
+```
 xhost -local:root
 ```
