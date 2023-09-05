@@ -17,12 +17,12 @@ xhost +local:root
 Then, start docker container using: (see http://wiki.ros.org/docker/Tutorials/GUI)
 ```
 sudo docker run \
-    --net=host \  
-    --privileged \     
+    --net=host \
+    --privileged \
     --rm \
-    -it \   
-    --env="DISPLAY" \    
-    --env="QT_X11_NO_MITSHM=1" \   
+    -it \
+    --env="DISPLAY" \
+    --env="QT_X11_NO_MITSHM=1" \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     rosgazebopx4 \
     bash
