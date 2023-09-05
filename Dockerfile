@@ -39,8 +39,3 @@ RUN bash ubuntu_sim_ros_noetic.sh
 WORKDIR /src/Firmware
 RUN git submodule update --init --recursive
 RUN DONT_RUN=1 make px4_sitl_default gazebo
-
-# # add firmware to ROS path
-# RUN echo "source Tools/simulation/gazebo-classic/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default" >> ~/.bashrc \
-#     && echo "export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd):$(pwd)/Tools/simulation/gazebo-classic/sitl_gazebo-classic" >> ~/.bashrc
-#sudo docker run     --net=host     --privileged     --rm     -it      --env="DISPLAY"     --env="QT_X11_NO_MITSHM=1"     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" osrf/ros:indigo-desktop-full bash
