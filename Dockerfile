@@ -30,9 +30,7 @@ WORKDIR /src
 RUN DEBIAN_FRONTEND=noninteractive apt update && apt install -y \
     keyboard-configuration
 
-
-RUN wget https://raw.githubusercontent.com/PX4/PX4-Devguide/pr-installation-instructions-noetic/build_scripts/ubuntu_sim_ros_noetic.sh
-# COPY ubuntu_sim_ros_noetic.sh /src
+COPY *.sh /src
 RUN bash ubuntu_sim_ros_noetic.sh
 
 # install submodules
