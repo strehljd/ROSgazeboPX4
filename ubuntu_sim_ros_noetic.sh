@@ -86,18 +86,6 @@ if [[ ! -z $unsupported_os ]]; then
     >&2 echo -e "expected you have been warned."
 fi
 
-#Install geographiclib
-sudo apt install geographiclib-tools -y
-echo "Downloading dependent script 'install_geographiclib_datasets.sh'"
-# Source the install_geographiclib_datasets.sh script directly from github
-# install_geo=$(wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh -O -)
-# wget_return_code=$?
-# If there was an error downloading the dependent script, we must warn the user and exit at this point.
-# if [[ $wget_return_code -ne 0 ]]; then echo "Error downloading 'install_geographiclib_datasets.sh'. Sorry but I cannot proceed further :("; exit 1; fi
-# Otherwise source the downloaded script.
-chmod +x ./install_geographiclib_datasets.sh # allow to execute the script
-sudo bash -c ./install_geographiclib_datasets.sh
-
 ## Build!
 catkin build
 ## Re-source environment to reflect new packages/build environment

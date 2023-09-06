@@ -33,6 +33,11 @@ RUN DEBIAN_FRONTEND=noninteractive apt update && apt install -y \
 COPY *.sh /src
 RUN bash ubuntu_sim_ros_noetic.sh
 
+#Install geographiclib
+RUN apt update && apt install -y \
+   geographiclib-tools
+RUN chmod +x /src/install_geographiclib_datasets.sh && /src/install_geographiclib_datasets.sh
+
 # install submodules
 WORKDIR /src/Firmware
 RUN git submodule update --init --recursive
