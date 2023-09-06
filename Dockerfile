@@ -18,7 +18,7 @@ WORKDIR /src
 RUN git clone https://github.com/PX4/Firmware.git --recursive
 
 # setup of the development environment
-WORKDIR Firmware
+WORKDIR /src/Firmware
 RUN bash ./Tools/setup/ubuntu.sh
 
 FROM build1 AS build12
