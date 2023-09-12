@@ -3,7 +3,12 @@ This is the result of the installation guide provided by the IRT.
 
 # Build docker container
 ```
-sudo docker build . -t rosgazebopx4
+docker build . -t rosgazebopx4
+```
+
+To allow usage of private repositories (using ssh authentication) use: 
+```
+docker buildx build --ssh default=$SSH_AUTH_SOCK -t rosgazebo:submodules --target SITL_GAZEBO .
 ```
 
 # Start the docker container
