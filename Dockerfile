@@ -9,15 +9,19 @@ RUN apt update && apt install -y \
     wget\
     lsb-release\
     git \
+    openssh-client\
     gnupg
 # gnupg required for set up script
 
 ### build stage 1 ###
 FROM dependecies as build1
+# prepare for private ssh clone
+RUN mkdir -p -m 0700 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 
 # PX4 firmware github clone
 WORKDIR /src
-RUN git clone https://github.com/strehljd/PX4-Autopilot.git --recursive
+# COPY PX4-Autopilot /src/PX4-Autopilot
+RUN --mount=type=ssh git clone -b git_submodules https://github.com/strehljd/PX4-Autopilot.git --recursive
 # here I am using my forked version. This can be changed to the origianal repo if there are no changes necessary
 
 # setup of the development environment
@@ -46,7 +50,7 @@ RUN bash ubuntu_sim_ros_noetic.sh
 
 # get additional git content
 WORKDIR /src/PX4-Autopilot
-RUN git fetch --tags && git submodule update --init --recursive 
+RUN --mount=type=ssh git fetch --tags && git submodule update --init --recursive 
 # tags have to be fetched for the build process - otherwise CMAKE will fail (see https://github.com/PX4/PX4-Autopilot/issues/21644#issuecomment-1674169116)
 
 ### build stage SITL GAZEBO ###
