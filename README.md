@@ -43,7 +43,10 @@ Look at the fancy gazebo with:
 ```
 roslaunch px4 multi_uav_mavros_sitl.launch
 ```
-
+Launch typhoon drone: 
+```
+make px4_sitl gazebo_typhoon_h480
+```
 When done remove xhost priviliges: 
 ```
 xhost -local:root
