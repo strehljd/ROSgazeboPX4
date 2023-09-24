@@ -29,7 +29,7 @@ WORKDIR /src/PX4-Autopilot
 RUN bash ./Tools/setup/ubuntu.sh
 
 ###  build stage 2 ###
-FROM build1 AS build12
+FROM build1 AS build2
 # we need an additional build stage to "restart"
 
 WORKDIR /src
@@ -54,6 +54,6 @@ RUN --mount=type=ssh git fetch --tags && git submodule update --init --recursive
 # tags have to be fetched for the build process - otherwise CMAKE will fail (see https://github.com/PX4/PX4-Autopilot/issues/21644#issuecomment-1674169116)
 
 ### build stage SITL GAZEBO ###
-FROM build2 as SITL_GAZEBO
+FROM build2 as sitl_gazebo
 # build with Sofware In The Loop (gazebo) as target
 RUN DONT_RUN=1 make px4_sitl_default gazebo
